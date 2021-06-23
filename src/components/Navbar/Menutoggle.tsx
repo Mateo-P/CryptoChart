@@ -1,8 +1,12 @@
-import React from 'react';
-import { Box, useColorMode } from '@chakra-ui/react';
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
-const MenuToggle = ({ toggle, isOpen }) => {
-  const { colorMode } = useColorMode();
+import { FC } from 'react'
+import { Box, useColorMode } from '@chakra-ui/react'
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+interface Props {
+  toggle: () => void
+  isOpen: boolean
+}
+const MenuToggle: FC<Props> = ({ toggle, isOpen }) => {
+  const { colorMode } = useColorMode()
   return (
     <Box display={{ base: 'block', md: 'none' }} onClick={toggle}>
       {isOpen ? (
@@ -11,6 +15,6 @@ const MenuToggle = ({ toggle, isOpen }) => {
         <HamburgerIcon color={colorMode === 'light' ? 'black' : 'white'} />
       )}
     </Box>
-  );
-};
-export default MenuToggle;
+  )
+}
+export default MenuToggle
