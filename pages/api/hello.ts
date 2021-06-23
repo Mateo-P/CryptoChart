@@ -11,6 +11,11 @@ type Data = {
 }
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   let hola = await binance.prices()
-
-  res.status(200).json(hola)
+  let balance = await binance.balance(function (error: Error, balances: any) {
+    console.log('balances()', balances)
+    if (typeof balances.ETH !== 'undefined') {
+      console.log('ETH balance: ', balances.ETH.available)
+    }
+  })
+  res.status(200).json(balance)
 }
